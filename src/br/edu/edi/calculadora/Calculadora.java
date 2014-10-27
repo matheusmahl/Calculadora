@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class CalcSimples extends JFrame {
+public class Calculadora extends JFrame {
 
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class CalcSimples extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CalcSimples() {
+	public Calculadora() {
 
 		setResizable(false);
 		setTitle("Calculadora");
@@ -224,21 +224,6 @@ public class CalcSimples extends JFrame {
 		mnOpcoes.setMnemonic('o');
 		menuBar.add(mnOpcoes);
 
-		JMenuItem mntmCalculadoraComplexa = new JMenuItem(
-				"Calculadora Complexa");
-		mntmCalculadoraComplexa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					CalcCientifica tela = new CalcCientifica();
-					tela.setVisible(true);
-					dispose();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		mnOpcoes.add(mntmCalculadoraComplexa);
-
 		JMenuItem mntmSair = new JMenuItem("Sair");
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -280,7 +265,7 @@ public class CalcSimples extends JFrame {
 				AtualizaTela();
 			}
 		});
-		btnApagarUm.setIcon(new ImageIcon(CalcSimples.class
+		btnApagarUm.setIcon(new ImageIcon(Calculadora.class
 				.getResource("/br/edu/edi/images/flecha_esquerda.png")));
 		btnApagarUm.setBounds(93, 32, 52, 42);
 		contentPane.add(btnApagarUm);
@@ -311,7 +296,7 @@ public class CalcSimples extends JFrame {
 			@Override
 			public boolean dispatchKeyEvent(final KeyEvent e) {
 				if (e.getID() == KeyEvent.KEY_PRESSED) {
-					Component[] comps = CalcSimples.this.getContentPane()
+					Component[] comps = Calculadora.this.getContentPane()
 							.getComponents();
 					for (int c = 0; c < comps.length; c++) {
 						if ((comps[c] instanceof JButton)
