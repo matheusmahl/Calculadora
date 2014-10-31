@@ -7,7 +7,6 @@ import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -33,8 +32,7 @@ public class Calculadora extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtAreaCalculo;
 	ArrayList<Object> lista = new ArrayList<>();
-	Calculos operacoes = new Calculos();
-
+	StringBuffer str = new 	StringBuffer();
 	/**
 	 * Create the frame.
 	 */
@@ -45,41 +43,38 @@ public class Calculadora extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 400);
 		contentPane = new JPanel();
-		contentPane.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				System.out.println("teste");
-			}
-		});
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		//Botão sete
 		JButton btnSete = new JButton("7");
 		btnSete.setFont(new Font("Arial", Font.BOLD, 24));
 		btnSete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(7);
+				str.append("7");
 			}
 		});
 		btnSete.setBounds(31, 85, 52, 51);
 		contentPane.add(btnSete);
-
+		//Botão 8
 		JButton btnOito = new JButton("8");
 		btnOito.setFont(new Font("Arial", Font.BOLD, 24));
 		btnOito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(8);
+				str.append("8");
 			}
 		});
 		btnOito.setBounds(93, 85, 52, 51);
 		contentPane.add(btnOito);
-
+		//Botão 9
 		final JButton btnNove = new JButton("9");
 		btnNove.setFont(new Font("Arial", Font.BOLD, 24));
 		btnNove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(9);
+				str.append("9");
 			}
 		});
 		btnNove.setBounds(153, 85, 52, 51);
@@ -94,32 +89,35 @@ public class Calculadora extends JFrame {
 		});
 		btnMultiplicacao.setBounds(215, 144, 52, 51);
 		contentPane.add(btnMultiplicacao);
-
+		//Botão 4
 		JButton btnQuatro = new JButton("4");
 		btnQuatro.setFont(new Font("Arial", Font.BOLD, 24));
 		btnQuatro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(4);
+				str.append("4");
 			}
 		});
 		btnQuatro.setBounds(31, 144, 52, 51);
 		contentPane.add(btnQuatro);
-
+		//Botão 5
 		JButton btnCinco = new JButton("5");
 		btnCinco.setFont(new Font("Arial", Font.BOLD, 24));
 		btnCinco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(5);
+				str.append("5");
 			}
 		});
 		btnCinco.setBounds(93, 144, 52, 51);
 		contentPane.add(btnCinco);
-
+		//Botão 6
 		JButton btnSeis = new JButton("6");
 		btnSeis.setFont(new Font("Arial", Font.BOLD, 24));
 		btnSeis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(6);
+				str.append("6");
 			}
 		});
 		btnSeis.setBounds(153, 144, 52, 51);
@@ -134,32 +132,35 @@ public class Calculadora extends JFrame {
 		});
 		btnSubtracao.setBounds(215, 206, 52, 51);
 		contentPane.add(btnSubtracao);
-
+		//Botão 1
 		JButton btnUm = new JButton("1");
 		btnUm.setFont(new Font("Arial", Font.BOLD, 24));
 		btnUm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(1);
+				str.append("1");
 			}
 		});
 		btnUm.setBounds(31, 206, 52, 51);
 		contentPane.add(btnUm);
-
+		//Botão 2
 		JButton btnDois = new JButton("2");
 		btnDois.setFont(new Font("Arial", Font.BOLD, 24));
 		btnDois.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(2);
+				str.append("2");
 			}
 		});
 		btnDois.setBounds(93, 206, 52, 51);
 		contentPane.add(btnDois);
-
+		//Botão 3
 		JButton btnTres = new JButton("3");
 		btnTres.setFont(new Font("Arial", Font.BOLD, 24));
 		btnTres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(3);
+				str.append("3");
 			}
 		});
 		btnTres.setBounds(153, 206, 52, 51);
@@ -174,12 +175,13 @@ public class Calculadora extends JFrame {
 		});
 		btnSoma.setBounds(153, 268, 52, 51);
 		contentPane.add(btnSoma);
-
+		//Botão 0
 		JButton btnZero = new JButton("0");
 		btnZero.setFont(new Font("Arial", Font.BOLD, 24));
 		btnZero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdicionarArray(0);
+				str.append("0");
 			}
 		});
 		btnZero.setBounds(31, 268, 52, 51);
@@ -199,17 +201,6 @@ public class Calculadora extends JFrame {
 		btnIgual.setFont(new Font("Arial", Font.BOLD, 24));
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO realizar calculos
-				if (lista.contains("+"))
-					AdicionarArray("=");
-				else if (lista.contains("-"))
-					AdicionarArray("=");
-				else if (lista.contains("*"))
-					AdicionarArray("=");
-				else if (lista.contains("/"))
-					AdicionarArray("=");
-
-				operacoes.juntarNumeros(lista);
 
 			}
 		});
