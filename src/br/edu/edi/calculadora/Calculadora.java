@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,10 +21,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
 public class Calculadora extends JFrame {
 
@@ -31,180 +34,204 @@ public class Calculadora extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtAreaCalculo;
-	ArrayList<Object> lista = new ArrayList<>();
-	StringBuffer str = new 	StringBuffer();
+	StringBuffer str = new StringBuffer();
+
 	/**
 	 * Create the frame.
 	 */
 	public Calculadora() {
-
 		setResizable(false);
 		setTitle("Calculadora");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 400);
+		setBounds(100, 100, 363, 547);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		//Botão sete
-		JButton btnSete = new JButton("7");
-		btnSete.setFont(new Font("Arial", Font.BOLD, 24));
-		btnSete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(7);
-				str.append("7");
-			}
-		});
-		btnSete.setBounds(31, 85, 52, 51);
-		contentPane.add(btnSete);
-		//Botão 8
-		JButton btnOito = new JButton("8");
-		btnOito.setFont(new Font("Arial", Font.BOLD, 24));
-		btnOito.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(8);
-				str.append("8");
-			}
-		});
-		btnOito.setBounds(93, 85, 52, 51);
-		contentPane.add(btnOito);
-		//Botão 9
-		final JButton btnNove = new JButton("9");
-		btnNove.setFont(new Font("Arial", Font.BOLD, 24));
-		btnNove.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(9);
-				str.append("9");
-			}
-		});
-		btnNove.setBounds(153, 85, 52, 51);
-		contentPane.add(btnNove);
-
-		JButton btnMultiplicacao = new JButton("*");
-		btnMultiplicacao.setFont(new Font("Arial", Font.BOLD, 24));
-		btnMultiplicacao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray("*");
-			}
-		});
-		btnMultiplicacao.setBounds(215, 144, 52, 51);
-		contentPane.add(btnMultiplicacao);
-		//Botão 4
-		JButton btnQuatro = new JButton("4");
-		btnQuatro.setFont(new Font("Arial", Font.BOLD, 24));
-		btnQuatro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(4);
-				str.append("4");
-			}
-		});
-		btnQuatro.setBounds(31, 144, 52, 51);
-		contentPane.add(btnQuatro);
-		//Botão 5
-		JButton btnCinco = new JButton("5");
-		btnCinco.setFont(new Font("Arial", Font.BOLD, 24));
-		btnCinco.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(5);
-				str.append("5");
-			}
-		});
-		btnCinco.setBounds(93, 144, 52, 51);
-		contentPane.add(btnCinco);
-		//Botão 6
-		JButton btnSeis = new JButton("6");
-		btnSeis.setFont(new Font("Arial", Font.BOLD, 24));
-		btnSeis.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(6);
-				str.append("6");
-			}
-		});
-		btnSeis.setBounds(153, 144, 52, 51);
-		contentPane.add(btnSeis);
-
-		JButton btnSubtracao = new JButton("-");
-		btnSubtracao.setFont(new Font("Arial", Font.BOLD, 24));
-		btnSubtracao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray("-");
-			}
-		});
-		btnSubtracao.setBounds(215, 206, 52, 51);
-		contentPane.add(btnSubtracao);
-		//Botão 1
-		JButton btnUm = new JButton("1");
-		btnUm.setFont(new Font("Arial", Font.BOLD, 24));
-		btnUm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(1);
-				str.append("1");
-			}
-		});
-		btnUm.setBounds(31, 206, 52, 51);
-		contentPane.add(btnUm);
-		//Botão 2
-		JButton btnDois = new JButton("2");
-		btnDois.setFont(new Font("Arial", Font.BOLD, 24));
-		btnDois.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(2);
-				str.append("2");
-			}
-		});
-		btnDois.setBounds(93, 206, 52, 51);
-		contentPane.add(btnDois);
-		//Botão 3
-		JButton btnTres = new JButton("3");
-		btnTres.setFont(new Font("Arial", Font.BOLD, 24));
-		btnTres.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(3);
-				str.append("3");
-			}
-		});
-		btnTres.setBounds(153, 206, 52, 51);
-		contentPane.add(btnTres);
-
-		JButton btnSoma = new JButton("+");
-		btnSoma.setFont(new Font("Arial", Font.BOLD, 24));
-		btnSoma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray("+");
-			}
-		});
-		btnSoma.setBounds(153, 268, 52, 51);
-		contentPane.add(btnSoma);
-		//Botão 0
+		// Ativa a utilização de teclas fisicas
+		entradaTeclado();
+		/*
+		 * Numerais
+		 */
+		// Botão 0
 		JButton btnZero = new JButton("0");
 		btnZero.setFont(new Font("Arial", Font.BOLD, 24));
 		btnZero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(0);
 				str.append("0");
+				atualizaTela();
 			}
 		});
-		btnZero.setBounds(31, 268, 52, 51);
+		btnZero.setBounds(111, 455, 52, 51);
 		contentPane.add(btnZero);
-
+		// Botão 1
+		JButton btnUm = new JButton("1");
+		btnUm.setFont(new Font("Arial", Font.BOLD, 24));
+		btnUm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("1");
+				atualizaTela();
+			}
+		});
+		btnUm.setBounds(111, 393, 52, 51);
+		contentPane.add(btnUm);
+		// Botão 2
+		JButton btnDois = new JButton("2");
+		btnDois.setFont(new Font("Arial", Font.BOLD, 24));
+		btnDois.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("2");
+				atualizaTela();
+			}
+		});
+		btnDois.setBounds(173, 393, 52, 51);
+		contentPane.add(btnDois);
+		// Botão 3
+		JButton btnTres = new JButton("3");
+		btnTres.setFont(new Font("Arial", Font.BOLD, 24));
+		btnTres.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("3");
+				atualizaTela();
+			}
+		});
+		btnTres.setBounds(233, 393, 52, 51);
+		contentPane.add(btnTres);
+		// Botão 4
+		JButton btnQuatro = new JButton("4");
+		btnQuatro.setFont(new Font("Arial", Font.BOLD, 24));
+		btnQuatro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("4");
+				atualizaTela();
+			}
+		});
+		btnQuatro.setBounds(111, 331, 52, 51);
+		contentPane.add(btnQuatro);
+		// Botão 5
+		JButton btnCinco = new JButton("5");
+		btnCinco.setFont(new Font("Arial", Font.BOLD, 24));
+		btnCinco.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("5");
+				atualizaTela();
+			}
+		});
+		btnCinco.setBounds(173, 331, 52, 51);
+		contentPane.add(btnCinco);
+		// Botão 6
+		JButton btnSeis = new JButton("6");
+		btnSeis.setFont(new Font("Arial", Font.BOLD, 24));
+		btnSeis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("6");
+				atualizaTela();
+			}
+		});
+		btnSeis.setBounds(233, 331, 52, 51);
+		contentPane.add(btnSeis);
+		// Botão sete
+		JButton btnSete = new JButton("7");
+		btnSete.setFont(new Font("Arial", Font.BOLD, 24));
+		btnSete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("7");
+				atualizaTela();
+			}
+		});
+		btnSete.setBounds(111, 272, 52, 51);
+		contentPane.add(btnSete);
+		// Botão 8
+		JButton btnOito = new JButton("8");
+		btnOito.setFont(new Font("Arial", Font.BOLD, 24));
+		btnOito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("8");
+				atualizaTela();
+			}
+		});
+		btnOito.setBounds(173, 272, 52, 51);
+		contentPane.add(btnOito);
+		// Botão 9
+		final JButton btnNove = new JButton("9");
+		btnNove.setFont(new Font("Arial", Font.BOLD, 24));
+		btnNove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("9");
+				atualizaTela();
+			}
+		});
+		btnNove.setBounds(233, 272, 52, 51);
+		contentPane.add(btnNove);
+		// Botão Ponto
 		JButton btnPonto = new JButton(".");
 		btnPonto.setFont(new Font("Arial", Font.BOLD, 24));
 		btnPonto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray(".");
+				str.append(".");
+				atualizaTela();
 			}
 		});
-		btnPonto.setBounds(93, 268, 52, 51);
+		btnPonto.setBounds(173, 455, 52, 51);
 		contentPane.add(btnPonto);
+		/*
+		 * Operadores
+		 */
+		// Botão Multiplicação
+		JButton btnMultiplicacao = new JButton("*");
+		btnMultiplicacao.setFont(new Font("Arial", Font.BOLD, 24));
+		btnMultiplicacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("*");
 
+				atualizaTela();
+			}
+		});
+		btnMultiplicacao.setBounds(295, 331, 52, 51);
+		contentPane.add(btnMultiplicacao);
+		// Botão Subtração
+		JButton btnSubtracao = new JButton("-");
+		btnSubtracao.setFont(new Font("Arial", Font.BOLD, 24));
+		btnSubtracao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("-");
+
+				atualizaTela();
+			}
+		});
+		btnSubtracao.setBounds(295, 393, 52, 51);
+		contentPane.add(btnSubtracao);
+		// Botão Soma
+		JButton btnSoma = new JButton("+");
+		btnSoma.setFont(new Font("Arial", Font.BOLD, 24));
+		btnSoma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("+");
+
+				atualizaTela();
+			}
+		});
+		btnSoma.setBounds(233, 455, 52, 51);
+		contentPane.add(btnSoma);
+		// Botão Divisão
+		JButton btnDivisao = new JButton("/");
+		btnDivisao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str.append("/");
+			}
+		});
+		// Botão Igual
 		JButton btnIgual = new JButton("=");
 		btnIgual.setFont(new Font("Arial", Font.BOLD, 24));
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				String op = str.toString();
+				clear();
+				str.append(operacao(op));
+				atualizaTela();
 			}
 		});
-		btnIgual.setBounds(215, 268, 52, 51);
+		btnIgual.setBounds(295, 455, 52, 51);
 		contentPane.add(btnIgual);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -234,53 +261,40 @@ public class Calculadora extends JFrame {
 		txtAreaCalculo.setEditable(false);
 		txtAreaCalculo.setFont(new Font("Arial", Font.BOLD, 30));
 		txtAreaCalculo.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtAreaCalculo.setBounds(300, 268, 293, 51);
+		txtAreaCalculo.setBounds(10, 32, 337, 51);
 		contentPane.add(txtAreaCalculo);
 		txtAreaCalculo.setColumns(10);
-
+		// Botão Limpar
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.setFont(new Font("Arial", Font.BOLD, 24));
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lista.clear();
-				AtualizaTela();
+				clear();
 			}
 		});
-		btnLimpar.setBounds(153, 32, 114, 42);
+		btnLimpar.setBounds(233, 94, 114, 42);
 		contentPane.add(btnLimpar);
-
+		// Botão apagar um
 		JButton btnApagarUm = new JButton("");
 		btnApagarUm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lista.remove(lista.size() - 1);
-				AtualizaTela();
+				str.deleteCharAt(str.length() - 1);
+				atualizaTela();
 			}
 		});
 		btnApagarUm.setIcon(new ImageIcon(Calculadora.class
 				.getResource("/br/edu/edi/images/flecha_esquerda.png")));
-		btnApagarUm.setBounds(93, 32, 52, 42);
+		btnApagarUm.setBounds(295, 219, 52, 42);
 		contentPane.add(btnApagarUm);
 
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(300, 85, 293, 172);
-		contentPane.add(textArea);
-
-		JButton btnDivisao = new JButton("/");
-		btnDivisao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdicionarArray("/");
-			}
-		});
 		btnDivisao.setFont(new Font("Arial", Font.BOLD, 24));
-		btnDivisao.setBounds(215, 85, 52, 51);
+		btnDivisao.setBounds(295, 272, 52, 51);
 		contentPane.add(btnDivisao);
-
-		entradaTeclado();
 
 	}
 
-	/**
-	 * 
+	/*
+	 * Método para utilizar botões do teclado
 	 */
 	public void entradaTeclado() {
 		KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
@@ -297,7 +311,6 @@ public class Calculadora extends JFrame {
 							break;
 						}
 					}
-
 				}
 				// Pass the KeyEvent to the next KeyEventDispatcher in the chain
 				return false;
@@ -307,25 +320,44 @@ public class Calculadora extends JFrame {
 				.addKeyEventDispatcher(keyEventDispatcher);
 	}
 
-	// Adiciona os numeros no array
-	public void AdicionarArray(int n) {
-		lista.add(n);
-		AtualizaTela();
+	/*
+	 * Atualiza a tela com a string armazenada no stringbuffer
+	 */
+	public void atualizaTela() {
+		new Thread() {
+
+			@Override
+			public void run() {
+				txtAreaCalculo.setText(str.toString());
+			}
+		}.start();
+
 	}
 
-	// adiciona os operandos no array
-	public void AdicionarArray(String c) {
-		lista.add(c);
-		AtualizaTela();
-	}
+	/*
+	 * Realiza operações de cálculo
+	 */
+	public Object operacao(String calculo) {
 
-	// Mostra na tela
-	public void AtualizaTela() {
-		String texto = "";
-		for (Object num : lista) {
-			if (!num.equals("+/-"))
-				texto = texto.concat("" + num);
+		// create a script engine manager
+		ScriptEngineManager factory = new ScriptEngineManager();
+		// create a JavaScript engine
+		ScriptEngine engine = factory.getEngineByName("JavaScript");
+		// evaluate JavaScript code from String
+		Object obj = null;
+		try {
+			obj = engine.eval(calculo);
+		} catch (ScriptException e) {
+			return 0;
 		}
-		txtAreaCalculo.setText(texto);
+		return obj;
+	}
+
+	/*
+	 * Limpa a tela
+	 */
+	public void clear() {
+		str.delete(0, str.length());
+		atualizaTela();
 	}
 }
