@@ -362,7 +362,7 @@ public class Calculadora extends JFrame {
 		JButton btnX = new JButton("x\u00B2");
 		btnX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("^2");
+				str.append("pow(");
 				atualizaTela();
 			}
 		});
@@ -458,7 +458,7 @@ public class Calculadora extends JFrame {
 		
 		String str = str2.toString();
 		str = str.replaceAll("sqrt", "Math.sqrt");
-		
+		str = str.replaceAll("pow","Math.pow");
 		return str;
 		
 		
