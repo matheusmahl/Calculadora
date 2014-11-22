@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
 public class Calculadora extends JFrame {
 
@@ -32,18 +33,20 @@ public class Calculadora extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtAreaCalculo;
-	StringBuffer str = new StringBuffer();
-	TTransformar Conversor = new TTransformar();
+	private StringBuffer str = new StringBuffer();
 	private JButton btnIgual;
+	private JLabel lblInfixa02;
+	private JLabel lblPosFixa;
+	TTransformar Conversor = new TTransformar();
 
 	/**
 	 * Create the frame.
 	 */
 	public Calculadora() {
 		setResizable(false);
-		setTitle("Calculadora");
+		setTitle("Master Calculadora");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 400, 547);
+		setBounds(100, 100, 371, 623);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,10 +65,10 @@ public class Calculadora extends JFrame {
 		btnZero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("0");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnZero.setBounds(146, 455, 52, 51);
+		btnZero.setBounds(113, 532, 52, 51);
 		contentPane.add(btnZero);
 
 		// Botão 1
@@ -74,10 +77,10 @@ public class Calculadora extends JFrame {
 		btnUm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("1");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnUm.setBounds(146, 393, 52, 51);
+		btnUm.setBounds(113, 470, 52, 51);
 		contentPane.add(btnUm);
 
 		// Botão 2
@@ -86,10 +89,10 @@ public class Calculadora extends JFrame {
 		btnDois.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("2");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnDois.setBounds(208, 393, 52, 51);
+		btnDois.setBounds(175, 470, 52, 51);
 		contentPane.add(btnDois);
 
 		// Botão 3
@@ -98,10 +101,10 @@ public class Calculadora extends JFrame {
 		btnTres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("3");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnTres.setBounds(270, 393, 52, 51);
+		btnTres.setBounds(237, 470, 52, 51);
 		contentPane.add(btnTres);
 
 		// Botão 4
@@ -110,10 +113,10 @@ public class Calculadora extends JFrame {
 		btnQuatro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("4");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnQuatro.setBounds(146, 331, 52, 51);
+		btnQuatro.setBounds(113, 408, 52, 51);
 		contentPane.add(btnQuatro);
 
 		// Botão 5
@@ -122,10 +125,10 @@ public class Calculadora extends JFrame {
 		btnCinco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("5");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnCinco.setBounds(208, 331, 52, 51);
+		btnCinco.setBounds(175, 408, 52, 51);
 		contentPane.add(btnCinco);
 
 		// Botão 6
@@ -134,10 +137,10 @@ public class Calculadora extends JFrame {
 		btnSeis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("6");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnSeis.setBounds(270, 331, 52, 51);
+		btnSeis.setBounds(237, 408, 52, 51);
 		contentPane.add(btnSeis);
 
 		// Botão sete
@@ -146,10 +149,10 @@ public class Calculadora extends JFrame {
 		btnSete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("7");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnSete.setBounds(146, 272, 52, 51);
+		btnSete.setBounds(113, 349, 52, 51);
 		contentPane.add(btnSete);
 
 		// Botão 8
@@ -158,10 +161,10 @@ public class Calculadora extends JFrame {
 		btnOito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("8");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnOito.setBounds(208, 272, 52, 51);
+		btnOito.setBounds(175, 349, 52, 51);
 		contentPane.add(btnOito);
 
 		// Botão 9
@@ -170,10 +173,10 @@ public class Calculadora extends JFrame {
 		btnNove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("9");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnNove.setBounds(270, 272, 52, 51);
+		btnNove.setBounds(237, 349, 52, 51);
 		contentPane.add(btnNove);
 
 		// Botão Ponto
@@ -182,10 +185,10 @@ public class Calculadora extends JFrame {
 		btnPonto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append(".");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnPonto.setBounds(208, 455, 52, 51);
+		btnPonto.setBounds(175, 532, 52, 51);
 		contentPane.add(btnPonto);
 
 		// Botão Abre Barra
@@ -193,11 +196,11 @@ public class Calculadora extends JFrame {
 		btnAbreBarra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("(");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
 		btnAbreBarra.setFont(new Font("Arial", Font.BOLD, 24));
-		btnAbreBarra.setBounds(208, 210, 52, 51);
+		btnAbreBarra.setBounds(10, 532, 52, 51);
 		contentPane.add(btnAbreBarra);
 
 		// Botão Fecha Barra
@@ -205,11 +208,11 @@ public class Calculadora extends JFrame {
 		btnFechaBarra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append(")");
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
 		btnFechaBarra.setFont(new Font("Arial", Font.BOLD, 24));
-		btnFechaBarra.setBounds(270, 210, 52, 51);
+		btnFechaBarra.setBounds(10, 470, 52, 51);
 		contentPane.add(btnFechaBarra);
 
 		/*
@@ -223,10 +226,10 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("*");
 
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnMultiplicacao.setBounds(332, 331, 52, 51);
+		btnMultiplicacao.setBounds(299, 408, 52, 51);
 		contentPane.add(btnMultiplicacao);
 
 		// Botão Subtração
@@ -236,10 +239,10 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("-");
 
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnSubtracao.setBounds(332, 393, 52, 51);
+		btnSubtracao.setBounds(299, 470, 52, 51);
 		contentPane.add(btnSubtracao);
 
 		// Botão Soma
@@ -249,10 +252,10 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("+");
 
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
-		btnSoma.setBounds(270, 455, 52, 51);
+		btnSoma.setBounds(237, 532, 52, 51);
 		contentPane.add(btnSoma);
 
 		// Botão Divisão
@@ -263,7 +266,7 @@ public class Calculadora extends JFrame {
 			}
 		});
 		btnDivisao.setFont(new Font("Arial", Font.BOLD, 24));
-		btnDivisao.setBounds(332, 272, 52, 51);
+		btnDivisao.setBounds(299, 349, 52, 51);
 		contentPane.add(btnDivisao);
 
 		// Botão Igual
@@ -271,13 +274,21 @@ public class Calculadora extends JFrame {
 		btnIgual.setFont(new Font("Arial", Font.BOLD, 24));
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String op = "" + operacao(str);
-				clear();
-				str.append(op);
-				atualizaTela();
+				try {
+					lblPosFixa.setText(Conversor.ConverterPosFixa(str
+							.toString()));
+					lblInfixa02.setText(str.toString());
+					String op = "" + operacao(str);
+					limparExpressao();
+					str.append(op);
+					atualizaTela(true);
+				} catch (Exception ex) {
+
+				}
+
 			}
 		});
-		btnIgual.setBounds(332, 455, 52, 51);
+		btnIgual.setBounds(299, 532, 52, 51);
 		contentPane.add(btnIgual);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -307,7 +318,7 @@ public class Calculadora extends JFrame {
 		txtAreaCalculo.setEditable(false);
 		txtAreaCalculo.setFont(new Font("Arial", Font.BOLD, 30));
 		txtAreaCalculo.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtAreaCalculo.setBounds(10, 32, 374, 51);
+		txtAreaCalculo.setBounds(10, 32, 341, 51);
 		contentPane.add(txtAreaCalculo);
 		txtAreaCalculo.setColumns(10);
 
@@ -316,10 +327,11 @@ public class Calculadora extends JFrame {
 		btnLimpar.setFont(new Font("Arial", Font.BOLD, 24));
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				clear();
+				limparExpressao();
+				atualizaTela(true);
 			}
 		});
-		btnLimpar.setBounds(270, 94, 114, 42);
+		btnLimpar.setBounds(113, 287, 114, 51);
 		contentPane.add(btnLimpar);
 
 		// Botão apagar um
@@ -327,13 +339,33 @@ public class Calculadora extends JFrame {
 		btnApagarUm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.deleteCharAt(str.length() - 1);
-				atualizaTela();
+				atualizaTela(false);
 			}
 		});
 		btnApagarUm.setIcon(new ImageIcon(Calculadora.class
 				.getResource("/br/edu/edi/images/flecha_esquerda.png")));
-		btnApagarUm.setBounds(332, 210, 52, 51);
+		btnApagarUm.setBounds(237, 287, 52, 51);
 		contentPane.add(btnApagarUm);
+
+		JLabel lblInfixa = new JLabel("Infixa:");
+		lblInfixa.setFont(new Font("Arial", Font.BOLD, 24));
+		lblInfixa.setBounds(10, 94, 76, 21);
+		contentPane.add(lblInfixa);
+
+		lblInfixa02 = new JLabel("");
+		lblInfixa02.setFont(new Font("Arial", Font.BOLD, 24));
+		lblInfixa02.setBounds(10, 126, 341, 34);
+		contentPane.add(lblInfixa02);
+
+		lblPosFixa = new JLabel("");
+		lblPosFixa.setFont(new Font("Arial", Font.BOLD, 24));
+		lblPosFixa.setBounds(10, 206, 341, 34);
+		contentPane.add(lblPosFixa);
+
+		JLabel lblPsfixa = new JLabel("P\u00F3s-Fixa:");
+		lblPsfixa.setFont(new Font("Arial", Font.BOLD, 24));
+		lblPsfixa.setBounds(10, 174, 107, 21);
+		contentPane.add(lblPsfixa);
 
 	}
 
@@ -367,14 +399,12 @@ public class Calculadora extends JFrame {
 	/*
 	 * Atualiza a tela com a string armazenada no stringbuffer
 	 */
-	public void atualizaTela() {
-		new Thread() {
-
-			@Override
-			public void run() {
-				txtAreaCalculo.setText(str.toString());
-			}
-		}.start();
+	public void atualizaTela(boolean ACheck) {
+		if (ACheck) {
+			txtAreaCalculo.setText(str.toString());
+			limparExpressao();
+		} else
+			txtAreaCalculo.setText(str.toString());
 
 	}
 
@@ -382,14 +412,9 @@ public class Calculadora extends JFrame {
 	 * Realiza operações de cálculo
 	 */
 	public Object operacao(StringBuffer str2) {
-		// create a script engine manager
 		ScriptEngineManager factory = new ScriptEngineManager();
-		// create a JavaScript engine
 		ScriptEngine engine = factory.getEngineByName("JavaScript");
-		// evaluate JavaScript code from String
-
-		String equacao = teste(str2);
-
+		String equacao = fecharParenteses(str2);
 		Object obj = null;
 		try {
 			obj = engine.eval(equacao);
@@ -399,39 +424,32 @@ public class Calculadora extends JFrame {
 		return obj;
 	}
 
-	private String teste(StringBuffer str2) {
+	/**
+	 * 
+	 * @param expressao
+	 * @return string expressao
+	 */
+	private String fecharParenteses(StringBuffer expressao) {
 		int contAbre = 0;
 		int contFecha = 0;
-
-		for (int i = 0; i < str2.length(); i++) {
-			if (str2.charAt(i) == '(') {
+		for (int i = 0; i < expressao.length(); i++) {
+			if (expressao.charAt(i) == '(')
 				contAbre++;
-			}
-			if (str2.charAt(i) == ')') {
+			if (expressao.charAt(i) == ')')
 				contFecha++;
-			}
-
 		}
-
 		if (contFecha < contAbre) {
-			int dif = contAbre - contFecha;
-			for (int i = 0; i < dif; i++) {
-				str2.append(")");
+			for (int i = 0; i < (contAbre - contFecha); i++) {
+				expressao.append(")");
 			}
 		}
-
-		String str = str2.toString();
-		str = str.replaceAll("sqrt", "Math.sqrt");
-		return str;
-
+		return expressao.toString();
 	}
 
 	/*
 	 * Limpa a tela
 	 */
-	public void clear() {
+	public void limparExpressao() {
 		str.delete(0, str.length());
-		atualizaTela();
 	}
-
 }
