@@ -63,7 +63,7 @@ public class TTransformar {
 		return resultado;
 	}
 
-	private boolean IsOperador(char caracter) {
+	public boolean IsOperador(char caracter) {
 		char[] Operadores = { '/', '*', '+', '-' };
 		for (char c : Operadores) {
 			if (c == caracter)
@@ -72,7 +72,7 @@ public class TTransformar {
 		return false;
 	}
 
-	private boolean IsOperando(char caracter) {
+	public boolean IsOperando(char caracter) {
 		return Character.isDigit(caracter);
 	}
 

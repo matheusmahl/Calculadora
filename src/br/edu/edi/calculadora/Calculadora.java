@@ -46,7 +46,7 @@ public class Calculadora extends JFrame {
 		setResizable(false);
 		setTitle("Master Calculadora");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 371, 623);
+		setBounds(100, 100, 271, 623);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,7 +68,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnZero.setBounds(113, 532, 52, 51);
+		btnZero.setBounds(134, 532, 52, 51);
 		contentPane.add(btnZero);
 
 		// Botão 1
@@ -80,7 +80,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnUm.setBounds(113, 470, 52, 51);
+		btnUm.setBounds(10, 470, 52, 51);
 		contentPane.add(btnUm);
 
 		// Botão 2
@@ -92,7 +92,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnDois.setBounds(175, 470, 52, 51);
+		btnDois.setBounds(72, 470, 52, 51);
 		contentPane.add(btnDois);
 
 		// Botão 3
@@ -104,7 +104,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnTres.setBounds(237, 470, 52, 51);
+		btnTres.setBounds(134, 470, 52, 51);
 		contentPane.add(btnTres);
 
 		// Botão 4
@@ -116,7 +116,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnQuatro.setBounds(113, 408, 52, 51);
+		btnQuatro.setBounds(10, 408, 52, 51);
 		contentPane.add(btnQuatro);
 
 		// Botão 5
@@ -128,7 +128,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnCinco.setBounds(175, 408, 52, 51);
+		btnCinco.setBounds(72, 408, 52, 51);
 		contentPane.add(btnCinco);
 
 		// Botão 6
@@ -140,7 +140,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnSeis.setBounds(237, 408, 52, 51);
+		btnSeis.setBounds(134, 408, 52, 51);
 		contentPane.add(btnSeis);
 
 		// Botão sete
@@ -152,7 +152,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnSete.setBounds(113, 349, 52, 51);
+		btnSete.setBounds(10, 349, 52, 51);
 		contentPane.add(btnSete);
 
 		// Botão 8
@@ -164,7 +164,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnOito.setBounds(175, 349, 52, 51);
+		btnOito.setBounds(72, 349, 52, 51);
 		contentPane.add(btnOito);
 
 		// Botão 9
@@ -176,20 +176,8 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnNove.setBounds(237, 349, 52, 51);
+		btnNove.setBounds(134, 349, 52, 51);
 		contentPane.add(btnNove);
-
-		// Botão Ponto
-		JButton btnPonto = new JButton(".");
-		btnPonto.setFont(new Font("Arial", Font.BOLD, 24));
-		btnPonto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				str.append(".");
-				atualizaTela(false);
-			}
-		});
-		btnPonto.setBounds(175, 532, 52, 51);
-		contentPane.add(btnPonto);
 
 		// Botão Abre Barra
 		JButton btnAbreBarra = new JButton("(");
@@ -212,7 +200,7 @@ public class Calculadora extends JFrame {
 			}
 		});
 		btnFechaBarra.setFont(new Font("Arial", Font.BOLD, 24));
-		btnFechaBarra.setBounds(10, 470, 52, 51);
+		btnFechaBarra.setBounds(72, 532, 52, 51);
 		contentPane.add(btnFechaBarra);
 
 		/*
@@ -229,7 +217,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnMultiplicacao.setBounds(299, 408, 52, 51);
+		btnMultiplicacao.setBounds(196, 349, 52, 51);
 		contentPane.add(btnMultiplicacao);
 
 		// Botão Subtração
@@ -242,7 +230,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnSubtracao.setBounds(299, 470, 52, 51);
+		btnSubtracao.setBounds(196, 408, 52, 51);
 		contentPane.add(btnSubtracao);
 
 		// Botão Soma
@@ -255,7 +243,7 @@ public class Calculadora extends JFrame {
 				atualizaTela(false);
 			}
 		});
-		btnSoma.setBounds(237, 532, 52, 51);
+		btnSoma.setBounds(196, 470, 52, 51);
 		contentPane.add(btnSoma);
 
 		// Botão Divisão
@@ -263,10 +251,11 @@ public class Calculadora extends JFrame {
 		btnDivisao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				str.append("/");
+				atualizaTela(false);
 			}
 		});
 		btnDivisao.setFont(new Font("Arial", Font.BOLD, 24));
-		btnDivisao.setBounds(299, 349, 52, 51);
+		btnDivisao.setBounds(196, 287, 52, 51);
 		contentPane.add(btnDivisao);
 
 		// Botão Igual
@@ -274,21 +263,20 @@ public class Calculadora extends JFrame {
 		btnIgual.setFont(new Font("Arial", Font.BOLD, 24));
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
+				if (verificarExpressao()) {
+					String op = "" + operacao(str);
 					lblPosFixa.setText(Conversor.ConverterPosFixa(str
 							.toString()));
 					lblInfixa02.setText(str.toString());
-					String op = "" + operacao(str);
 					limparExpressao();
 					str.append(op);
 					atualizaTela(true);
-				} catch (Exception ex) {
-
-				}
+				} else
+					JOptionPane.showMessageDialog(null, "Expressão Inválida!");
 
 			}
 		});
-		btnIgual.setBounds(299, 532, 52, 51);
+		btnIgual.setBounds(196, 532, 52, 51);
 		contentPane.add(btnIgual);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -318,7 +306,7 @@ public class Calculadora extends JFrame {
 		txtAreaCalculo.setEditable(false);
 		txtAreaCalculo.setFont(new Font("Arial", Font.BOLD, 30));
 		txtAreaCalculo.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtAreaCalculo.setBounds(10, 32, 341, 51);
+		txtAreaCalculo.setBounds(10, 32, 238, 51);
 		contentPane.add(txtAreaCalculo);
 		txtAreaCalculo.setColumns(10);
 
@@ -329,22 +317,26 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				limparExpressao();
 				atualizaTela(true);
+				lblPosFixa.setText("");
+				lblInfixa02.setText("");
 			}
 		});
-		btnLimpar.setBounds(113, 287, 114, 51);
+		btnLimpar.setBounds(10, 287, 114, 51);
 		contentPane.add(btnLimpar);
 
 		// Botão apagar um
 		JButton btnApagarUm = new JButton("");
 		btnApagarUm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.deleteCharAt(str.length() - 1);
-				atualizaTela(false);
+				if (str.length() > 0) {
+					str.deleteCharAt(str.length() - 1);
+					atualizaTela(false);
+				}
 			}
 		});
 		btnApagarUm.setIcon(new ImageIcon(Calculadora.class
 				.getResource("/br/edu/edi/images/flecha_esquerda.png")));
-		btnApagarUm.setBounds(237, 287, 52, 51);
+		btnApagarUm.setBounds(134, 287, 52, 51);
 		contentPane.add(btnApagarUm);
 
 		JLabel lblInfixa = new JLabel("Infixa:");
@@ -354,12 +346,12 @@ public class Calculadora extends JFrame {
 
 		lblInfixa02 = new JLabel("");
 		lblInfixa02.setFont(new Font("Arial", Font.BOLD, 24));
-		lblInfixa02.setBounds(10, 126, 341, 34);
+		lblInfixa02.setBounds(10, 126, 238, 34);
 		contentPane.add(lblInfixa02);
 
 		lblPosFixa = new JLabel("");
 		lblPosFixa.setFont(new Font("Arial", Font.BOLD, 24));
-		lblPosFixa.setBounds(10, 206, 341, 34);
+		lblPosFixa.setBounds(10, 206, 238, 34);
 		contentPane.add(lblPosFixa);
 
 		JLabel lblPsfixa = new JLabel("P\u00F3s-Fixa:");
@@ -367,6 +359,46 @@ public class Calculadora extends JFrame {
 		lblPsfixa.setBounds(10, 174, 107, 21);
 		contentPane.add(lblPsfixa);
 
+	}
+
+	protected boolean verificarExpressao() {
+		int iFechado = 0;
+		int iAberto = 0;
+		int iOperador = 0;
+		// Primeiro e caracter não pode ser operando
+		if (Conversor.IsOperador(str.charAt(0))
+				|| (Conversor.IsOperador(str.charAt(str.length() - 1))))
+			return false;
+
+		for (int iIndex = 0; iIndex < str.length() - 1; iIndex++) {
+			// Contador de parenteses
+			if (str.charAt(iIndex) == ')')
+				iFechado++;
+			else if (str.charAt(iIndex) == '(')
+				iAberto++;
+
+			// Se houver um parentesis fechado e não houver parenteses abertos
+			// equivalentes
+			if (str.charAt(iIndex) == ')' && (iAberto < iFechado))
+				return false;
+			// Dois operadores seguidos ou um operador e parenteses fechado
+			if (Conversor.IsOperador(str.charAt(iIndex))) {
+				iOperador++;
+				if ((Conversor.IsOperador(str.charAt(iIndex + 1)))
+						|| (str.charAt(iIndex + 1) == ')'))
+					return false;
+
+				// Se houver um parenteses aberto depois de um operando
+			} else if (Conversor.IsOperando(str.charAt(iIndex))) {
+				if (str.charAt(iIndex + 1) == '(')
+					return false;
+			}
+
+		}
+		if (iOperador == 0)
+			return false;
+
+		return true;
 	}
 
 	/*
