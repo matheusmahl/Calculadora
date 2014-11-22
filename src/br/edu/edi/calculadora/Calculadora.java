@@ -35,6 +35,7 @@ public class Calculadora extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtAreaCalculo;
 	StringBuffer str = new StringBuffer();
+	TTransformar Conversor = new TTransformar();
 	private JButton btnIgual;
 
 	/**
@@ -200,7 +201,7 @@ public class Calculadora extends JFrame {
 			}
 		});
 		btnAbreBarra.setFont(new Font("Arial", Font.BOLD, 24));
-		btnAbreBarra.setBounds(22, 455, 52, 51);
+		btnAbreBarra.setBounds(208, 210, 52, 51);
 		contentPane.add(btnAbreBarra);
 		
 		//Botão Fecha Barra
@@ -212,7 +213,7 @@ public class Calculadora extends JFrame {
 			}
 		});
 		btnFechaBarra.setFont(new Font("Arial", Font.BOLD, 24));
-		btnFechaBarra.setBounds(84, 455, 52, 51);
+		btnFechaBarra.setBounds(270, 210, 52, 51);
 		contentPane.add(btnFechaBarra);
 		
 		
@@ -280,6 +281,8 @@ public class Calculadora extends JFrame {
 				clear();
 				str.append(op);
 				atualizaTela();
+				System.out.println(op);
+				System.out.println(Conversor.ConverterPosFixa("(1+(2*3)*(4+5))*6"));
 			}
 		});
 		btnIgual.setBounds(332, 455, 52, 51);
@@ -341,34 +344,8 @@ public class Calculadora extends JFrame {
 		});
 		btnApagarUm.setIcon(new ImageIcon(Calculadora.class
 				.getResource("/br/edu/edi/images/flecha_esquerda.png")));
-		btnApagarUm.setBounds(332, 219, 52, 42);
+		btnApagarUm.setBounds(332, 210, 52, 51);
 		contentPane.add(btnApagarUm);
-		
-		JButton btnRaizQuadrada = new JButton("\u221A");
-		btnRaizQuadrada.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				str.append("sqrt(");
-				atualizaTela();
-				
-				
-				
-			
-			}
-		});
-		btnRaizQuadrada.setFont(new Font("Arial", Font.BOLD, 24));
-		btnRaizQuadrada.setBounds(84, 393, 52, 51);
-		contentPane.add(btnRaizQuadrada);
-		
-		JButton btnX = new JButton("x\u00B2");
-		btnX.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				str.append("pow(");
-				atualizaTela();
-			}
-		});
-		btnX.setFont(new Font("Arial", Font.BOLD, 20));
-		btnX.setBounds(22, 393, 52, 51);
-		contentPane.add(btnX);
 		
 
 	}
@@ -458,7 +435,6 @@ public class Calculadora extends JFrame {
 		
 		String str = str2.toString();
 		str = str.replaceAll("sqrt", "Math.sqrt");
-		str = str.replaceAll("pow","Math.pow");
 		return str;
 		
 		
@@ -471,4 +447,5 @@ public class Calculadora extends JFrame {
 		str.delete(0, str.length());
 		atualizaTela();
 	}
+	
 }
