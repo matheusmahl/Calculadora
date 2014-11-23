@@ -64,7 +64,7 @@ public class Calculadora extends JFrame {
 		btnZero.setFont(new Font("Arial", Font.BOLD, 24));
 		btnZero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("0");
+				adicionarNaLista('0');
 				atualizaTela(false);
 			}
 		});
@@ -76,7 +76,7 @@ public class Calculadora extends JFrame {
 		btnUm.setFont(new Font("Arial", Font.BOLD, 24));
 		btnUm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("1");
+				adicionarNaLista('1');
 				atualizaTela(false);
 			}
 		});
@@ -88,7 +88,7 @@ public class Calculadora extends JFrame {
 		btnDois.setFont(new Font("Arial", Font.BOLD, 24));
 		btnDois.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("2");
+				adicionarNaLista('2');
 				atualizaTela(false);
 			}
 		});
@@ -100,7 +100,7 @@ public class Calculadora extends JFrame {
 		btnTres.setFont(new Font("Arial", Font.BOLD, 24));
 		btnTres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("3");
+				adicionarNaLista('3');
 				atualizaTela(false);
 			}
 		});
@@ -112,7 +112,7 @@ public class Calculadora extends JFrame {
 		btnQuatro.setFont(new Font("Arial", Font.BOLD, 24));
 		btnQuatro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("4");
+				adicionarNaLista('4');
 				atualizaTela(false);
 			}
 		});
@@ -124,7 +124,7 @@ public class Calculadora extends JFrame {
 		btnCinco.setFont(new Font("Arial", Font.BOLD, 24));
 		btnCinco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("5");
+				adicionarNaLista('5');
 				atualizaTela(false);
 			}
 		});
@@ -136,7 +136,7 @@ public class Calculadora extends JFrame {
 		btnSeis.setFont(new Font("Arial", Font.BOLD, 24));
 		btnSeis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("6");
+				adicionarNaLista('6');
 				atualizaTela(false);
 			}
 		});
@@ -148,7 +148,7 @@ public class Calculadora extends JFrame {
 		btnSete.setFont(new Font("Arial", Font.BOLD, 24));
 		btnSete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("7");
+				adicionarNaLista('7');
 				atualizaTela(false);
 			}
 		});
@@ -160,7 +160,7 @@ public class Calculadora extends JFrame {
 		btnOito.setFont(new Font("Arial", Font.BOLD, 24));
 		btnOito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("8");
+				adicionarNaLista('8');
 				atualizaTela(false);
 			}
 		});
@@ -172,7 +172,7 @@ public class Calculadora extends JFrame {
 		btnNove.setFont(new Font("Arial", Font.BOLD, 24));
 		btnNove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("9");
+				adicionarNaLista('9');
 				atualizaTela(false);
 			}
 		});
@@ -183,7 +183,7 @@ public class Calculadora extends JFrame {
 		JButton btnAbreBarra = new JButton("(");
 		btnAbreBarra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("(");
+				adicionarNaLista('(');
 				atualizaTela(false);
 			}
 		});
@@ -195,7 +195,7 @@ public class Calculadora extends JFrame {
 		JButton btnFechaBarra = new JButton(")");
 		btnFechaBarra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append(")");
+				adicionarNaLista(')');
 				atualizaTela(false);
 			}
 		});
@@ -212,7 +212,7 @@ public class Calculadora extends JFrame {
 		btnMultiplicacao.setFont(new Font("Arial", Font.BOLD, 24));
 		btnMultiplicacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("*");
+				adicionarNaLista('*');
 
 				atualizaTela(false);
 			}
@@ -225,7 +225,7 @@ public class Calculadora extends JFrame {
 		btnSubtracao.setFont(new Font("Arial", Font.BOLD, 24));
 		btnSubtracao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("-");
+				adicionarNaLista('-');
 
 				atualizaTela(false);
 			}
@@ -238,7 +238,7 @@ public class Calculadora extends JFrame {
 		btnSoma.setFont(new Font("Arial", Font.BOLD, 24));
 		btnSoma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("+");
+				adicionarNaLista('+');
 
 				atualizaTela(false);
 			}
@@ -250,7 +250,7 @@ public class Calculadora extends JFrame {
 		JButton btnDivisao = new JButton("/");
 		btnDivisao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				str.append("/");
+				adicionarNaLista('/');
 				atualizaTela(false);
 			}
 		});
@@ -365,6 +365,7 @@ public class Calculadora extends JFrame {
 		int iFechado = 0;
 		int iAberto = 0;
 		int iOperador = 0;
+		if (str.length()<1) return false;
 		// Primeiro e caracter não pode ser operando
 		if (Conversor.IsOperador(str.charAt(0))
 				|| (Conversor.IsOperador(str.charAt(str.length() - 1))))
@@ -415,7 +416,9 @@ public class Calculadora extends JFrame {
 						if ((comps[c] instanceof JButton)
 								&& ((JButton) comps[c]).getText().equals(
 										e.getKeyChar() + "")) {
+							
 							((JButton) comps[c]).doClick();
+					     
 							break;
 						}
 					}
@@ -483,5 +486,16 @@ public class Calculadora extends JFrame {
 	 */
 	public void limparExpressao() {
 		str.delete(0, str.length());
+	}
+
+	/**
+	 * 
+	 */
+	public void adicionarNaLista(char cCaracter) {
+		if (str.length() < 13)
+			str.append(cCaracter);
+		else
+			JOptionPane.showMessageDialog(null,
+					"Numero máximo de caracteres atingido!");
 	}
 }
