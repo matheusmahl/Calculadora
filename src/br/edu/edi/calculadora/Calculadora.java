@@ -1,4 +1,5 @@
 package br.edu.edi.calculadora;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -24,10 +25,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
 /**
  * 
  * @author Matheus Mahl
- *
+ * 
  */
 public class Calculadora extends JFrame {
 
@@ -270,8 +272,8 @@ public class Calculadora extends JFrame {
 				fecharParenteses();
 				if (verificarExpressao()) {
 					DecimalFormat df = new DecimalFormat("###0.000000000");
-					double resultado = (double)calcularExpressao();	
-					String op = df.format(resultado); 
+					double resultado = (double) calcularExpressao();
+					String op = df.format(resultado);
 					lblPosFixa.setText(Conversor.ConverterPosFixa(sbCaracteres
 							.toString()));
 					lblInfixa02.setText(sbCaracteres.toString());
@@ -308,6 +310,16 @@ public class Calculadora extends JFrame {
 		});
 
 		JMenuItem mntmSobre = new JMenuItem("Sobre");
+		mntmSobre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(contentPane,
+						  "Desenvolvido por: \n"
+						+ "Matheus Mahl e Marcelo Sehnem \n"
+						+ "Versão 1.0 - 2014",
+						"Master Calculator",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnOpcoes.add(mntmSobre);
 		mnOpcoes.add(mntmSair);
 
