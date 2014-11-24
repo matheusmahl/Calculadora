@@ -271,7 +271,7 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				fecharParenteses();
 				if (verificarExpressao()) {
-					DecimalFormat df = new DecimalFormat("###0.000000000");
+					DecimalFormat df = new DecimalFormat("###0.00########");
 					double resultado = (double) calcularExpressao();
 					String op = df.format(resultado);
 					lblPosFixa.setText(Conversor.ConverterPosFixa(sbCaracteres
