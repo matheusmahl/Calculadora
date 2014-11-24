@@ -33,7 +33,7 @@ public class Calculadora extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtAreaCalculo;
-	private StringBuffer str = new StringBuffer();
+	private StringBuffer sbCaracteres = new StringBuffer();
 	private JButton btnIgual;
 	private JLabel lblInfixa02;
 	private JLabel lblPosFixa;
@@ -44,7 +44,7 @@ public class Calculadora extends JFrame {
 	 */
 	public Calculadora() {
 		setResizable(false);
-		setTitle("Master Calculadora");
+		setTitle("Master Calculator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 271, 623);
 		contentPane = new JPanel();
@@ -263,13 +263,14 @@ public class Calculadora extends JFrame {
 		btnIgual.setFont(new Font("Arial", Font.BOLD, 24));
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				fecharParenteses();
 				if (verificarExpressao()) {
-					String op = "" + operacao(str);
-					lblPosFixa.setText(Conversor.ConverterPosFixa(str
+					String op = "" + calcularExpressao();
+					lblPosFixa.setText(Conversor.ConverterPosFixa(sbCaracteres
 							.toString()));
-					lblInfixa02.setText(str.toString());
+					lblInfixa02.setText(sbCaracteres.toString());
 					limparExpressao();
-					str.append(op);
+					sbCaracteres.append(op);
 					atualizaTela(true);
 				} else
 					JOptionPane.showMessageDialog(null, "Expressão Inválida!");
@@ -299,6 +300,9 @@ public class Calculadora extends JFrame {
 				}
 			}
 		});
+
+		JMenuItem mntmSobre = new JMenuItem("Sobre");
+		mnOpcoes.add(mntmSobre);
 		mnOpcoes.add(mntmSair);
 
 		txtAreaCalculo = new JTextField();
@@ -328,8 +332,8 @@ public class Calculadora extends JFrame {
 		JButton btnApagarUm = new JButton("");
 		btnApagarUm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (str.length() > 0) {
-					str.deleteCharAt(str.length() - 1);
+				if (sbCaracteres.length() > 0) {
+					sbCaracteres.deleteCharAt(sbCaracteres.length() - 1);
 					atualizaTela(false);
 				}
 			}
@@ -361,37 +365,40 @@ public class Calculadora extends JFrame {
 
 	}
 
-	protected boolean verificarExpressao() {
+	private boolean verificarExpressao() {
 		int iFechado = 0;
 		int iAberto = 0;
 		int iOperador = 0;
-		if (str.length()<1) return false;
-		// Primeiro e caracter não pode ser operando
-		if (Conversor.IsOperador(str.charAt(0))
-				|| (Conversor.IsOperador(str.charAt(str.length() - 1))))
+		// Se possuir menos de um caractere
+		if (sbCaracteres.length() < 1)
+			return false;
+		// Primeiro e último caracter não pode ser operador ou parenteses aberto
+		if (Conversor.IsOperador(sbCaracteres.charAt(0))
+				|| ((Conversor.IsOperador(sbCaracteres.charAt(sbCaracteres.length() - 1))) 
+				|| (sbCaracteres.charAt(sbCaracteres.length() - 1) == '(')))
 			return false;
 
-		for (int iIndex = 0; iIndex < str.length() - 1; iIndex++) {
+		for (int iIndex = 0; iIndex < sbCaracteres.length() - 1; iIndex++) {
 			// Contador de parenteses
-			if (str.charAt(iIndex) == ')')
+			if (sbCaracteres.charAt(iIndex) == ')')
 				iFechado++;
-			else if (str.charAt(iIndex) == '(')
+			else if (sbCaracteres.charAt(iIndex) == '(')
 				iAberto++;
 
 			// Se houver um parentesis fechado e não houver parenteses abertos
 			// equivalentes
-			if (str.charAt(iIndex) == ')' && (iAberto < iFechado))
+			if (sbCaracteres.charAt(iIndex) == ')' && (iAberto < iFechado))
 				return false;
 			// Dois operadores seguidos ou um operador e parenteses fechado
-			if (Conversor.IsOperador(str.charAt(iIndex))) {
+			if (Conversor.IsOperador(sbCaracteres.charAt(iIndex))) {
 				iOperador++;
-				if ((Conversor.IsOperador(str.charAt(iIndex + 1)))
-						|| (str.charAt(iIndex + 1) == ')'))
+				if ((Conversor.IsOperador(sbCaracteres.charAt(iIndex + 1)))
+						|| (sbCaracteres.charAt(iIndex + 1) == ')'))
 					return false;
 
 				// Se houver um parenteses aberto depois de um operando
-			} else if (Conversor.IsOperando(str.charAt(iIndex))) {
-				if (str.charAt(iIndex + 1) == '(')
+			} else if (Conversor.IsOperando(sbCaracteres.charAt(iIndex))) {
+				if (sbCaracteres.charAt(iIndex + 1) == '(')
 					return false;
 			}
 
@@ -405,7 +412,7 @@ public class Calculadora extends JFrame {
 	/*
 	 * Método para utilizar botões do teclado
 	 */
-	public void entradaTeclado() {
+	private void entradaTeclado() {
 		KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
 			@Override
 			public boolean dispatchKeyEvent(final KeyEvent e) {
@@ -416,9 +423,9 @@ public class Calculadora extends JFrame {
 						if ((comps[c] instanceof JButton)
 								&& ((JButton) comps[c]).getText().equals(
 										e.getKeyChar() + "")) {
-							
+
 							((JButton) comps[c]).doClick();
-					     
+
 							break;
 						}
 					}
@@ -434,66 +441,59 @@ public class Calculadora extends JFrame {
 	/*
 	 * Atualiza a tela com a string armazenada no stringbuffer
 	 */
-	public void atualizaTela(boolean ACheck) {
-		if (ACheck) {
-			txtAreaCalculo.setText(str.toString());
+	private void atualizaTela(boolean ACheck) {
+		txtAreaCalculo.setText(sbCaracteres.toString());
+		if (ACheck) 
 			limparExpressao();
-		} else
-			txtAreaCalculo.setText(str.toString());
+		
 
 	}
 
 	/*
 	 * Realiza operações de cálculo
 	 */
-	public Object operacao(StringBuffer str2) {
+	private Object calcularExpressao() {
 		ScriptEngineManager factory = new ScriptEngineManager();
 		ScriptEngine engine = factory.getEngineByName("JavaScript");
-		String equacao = fecharParenteses(str2);
 		Object obj = null;
 		try {
-			obj = engine.eval(equacao);
+			obj = engine.eval(sbCaracteres.toString());
 		} catch (ScriptException e) {
 			return 0;
 		}
 		return obj;
 	}
 
-	/**
-	 * 
-	 * @param expressao
-	 * @return string expressao
-	 */
-	private String fecharParenteses(StringBuffer expressao) {
+	private void fecharParenteses() {
 		int contAbre = 0;
 		int contFecha = 0;
-		for (int i = 0; i < expressao.length(); i++) {
-			if (expressao.charAt(i) == '(')
+		for (int i = 0; i < sbCaracteres.length(); i++) {
+			if (sbCaracteres.charAt(i) == '(')
 				contAbre++;
-			if (expressao.charAt(i) == ')')
+			if (sbCaracteres.charAt(i) == ')')
 				contFecha++;
 		}
 		if (contFecha < contAbre) {
 			for (int i = 0; i < (contAbre - contFecha); i++) {
-				expressao.append(")");
+				sbCaracteres.append(")");
 			}
 		}
-		return expressao.toString();
+		atualizaTela(false);
 	}
 
 	/*
 	 * Limpa a tela
 	 */
-	public void limparExpressao() {
-		str.delete(0, str.length());
+	private void limparExpressao() {
+		sbCaracteres.delete(0, sbCaracteres.length());
 	}
 
-	/**
-	 * 
+	/*
+	 * Adiciona caracter no Stringbuffer
 	 */
-	public void adicionarNaLista(char cCaracter) {
-		if (str.length() < 13)
-			str.append(cCaracter);
+	private void adicionarNaLista(char ACaracter) {
+		if (sbCaracteres.length() < 13)
+			sbCaracteres.append(ACaracter);
 		else
 			JOptionPane.showMessageDialog(null,
 					"Numero máximo de caracteres atingido!");

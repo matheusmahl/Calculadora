@@ -12,68 +12,67 @@ import java.util.Stack;
  */
 public class TTransformar {
 
-	private int Prioridade(char cCaracter) {
-		if (cCaracter == '(')
+	private int getPrioridade(char ACaracter) {
+		if (ACaracter == '(')
 			return 1;
-		else if ((cCaracter == '+') || (cCaracter == '-'))
+		else if ((ACaracter == '+') || (ACaracter == '-'))
 			return 2;
-		else if ((cCaracter == '*') || (cCaracter == '/'))
+		else if ((ACaracter == '*') || (ACaracter == '/'))
 			return 3;
 		else
 			return 0;
 	}
 
-	public String ConverterPosFixa(String expInfixa) {
-		String resultado = "";
-		Stack<Character> pilha = new Stack<Character>();
-		char caracter;
+	public String ConverterPosFixa(String AExpInfixa) {
+		String sExpPosFixa = "";
+		Stack<Character> oPilha = new Stack<Character>();
+		char cCaracter;
 		int iPrioridade = 0;
 		// Varre todos os elementos da expressão de entrada e, para cada
-		// elemento, verifica
-		// se é operador ou operando. Se for operando, já adicona a saída.
-		for (int i = 0; i < expInfixa.length(); i++) {
-			caracter = expInfixa.charAt(i);
-			if (IsOperando(caracter)) {
-				resultado += caracter;
-			} else if (IsOperador(caracter)) {
-				iPrioridade = Prioridade(caracter);
-				while ((!pilha.isEmpty())
-						&& (Prioridade((Character) pilha.peek()) >= iPrioridade)) {
-					resultado += (Character) pilha.pop();
+		// elemento, verifica se é operador ou operando. Se for operando, já adicona a saída.
+		for (int i = 0; i < AExpInfixa.length(); i++) {
+			cCaracter = AExpInfixa.charAt(i);
+			if (IsOperando(cCaracter)) {
+				sExpPosFixa += cCaracter;
+			} else if (IsOperador(cCaracter)) {
+				iPrioridade = getPrioridade(cCaracter);
+				while ((!oPilha.isEmpty())
+						&& (getPrioridade((Character)oPilha.peek()) >= iPrioridade)) {
+					sExpPosFixa += (Character) oPilha.pop();
 				}
 				// Insere o objeto no topo da pilha
-				pilha.push(caracter);
-			} else if ('(' == caracter) {
+				oPilha.push(cCaracter);
+			} else if ('(' == cCaracter) {
 				// Insere o objeto no topo da pilha
-				pilha.push(caracter);
-			} else if (')' == caracter) {
-				char item = (Character) pilha.pop();
+				oPilha.push(cCaracter);
+			} else if (')' == cCaracter) {
+				char item = (Character) oPilha.pop();
 				while (!(item == '(')) {
-					resultado += item;
+					sExpPosFixa += item;
 					// Recupera e remove o objeto do topo da pilha
-					item = (Character) pilha.pop();
+					item = (Character) oPilha.pop();
 				}
 			}
 		}
 
-		while (!pilha.isEmpty()) {
-			resultado += pilha.pop().toString();
+		while (!oPilha.isEmpty()) {
+			sExpPosFixa += oPilha.pop().toString();
 		}
 
-		return resultado;
+		return sExpPosFixa;
 	}
 
-	public boolean IsOperador(char caracter) {
+	public boolean IsOperador(char ACaracter) {
 		char[] Operadores = { '/', '*', '+', '-' };
-		for (char c : Operadores) {
-			if (c == caracter)
+		for (char cCaracter : Operadores) {
+			if (cCaracter == ACaracter)
 				return true;
 		}
 		return false;
 	}
 
-	public boolean IsOperando(char caracter) {
-		return Character.isDigit(caracter);
+	public boolean IsOperando(char ACaracter) {
+		return Character.isDigit(ACaracter);
 	}
 
 }
