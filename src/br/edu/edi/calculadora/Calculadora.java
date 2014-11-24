@@ -1,5 +1,4 @@
 package br.edu.edi.calculadora;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -24,7 +23,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-
+/**
+ * 
+ * @author Matheus Mahl
+ *
+ */
 public class Calculadora extends JFrame {
 
 	/**
@@ -365,6 +368,10 @@ public class Calculadora extends JFrame {
 
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	private boolean verificarExpressao() {
 		int iFechado = 0;
 		int iAberto = 0;
@@ -374,8 +381,9 @@ public class Calculadora extends JFrame {
 			return false;
 		// Primeiro e último caracter não pode ser operador ou parenteses aberto
 		if (Conversor.IsOperador(sbCaracteres.charAt(0))
-				|| ((Conversor.IsOperador(sbCaracteres.charAt(sbCaracteres.length() - 1))) 
-				|| (sbCaracteres.charAt(sbCaracteres.length() - 1) == '(')))
+				|| ((Conversor.IsOperador(sbCaracteres.charAt(sbCaracteres
+						.length() - 1))) || (sbCaracteres.charAt(sbCaracteres
+						.length() - 1) == '(')))
 			return false;
 
 		for (int iIndex = 0; iIndex < sbCaracteres.length() - 1; iIndex++) {
@@ -412,6 +420,9 @@ public class Calculadora extends JFrame {
 	/*
 	 * Método para utilizar botões do teclado
 	 */
+	/**
+	 * 
+	 */
 	private void entradaTeclado() {
 		KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
 			@Override
@@ -441,16 +452,23 @@ public class Calculadora extends JFrame {
 	/*
 	 * Atualiza a tela com a string armazenada no stringbuffer
 	 */
+	/**
+	 * 
+	 * @param ACheck
+	 */
 	private void atualizaTela(boolean ACheck) {
 		txtAreaCalculo.setText(sbCaracteres.toString());
-		if (ACheck) 
+		if (ACheck)
 			limparExpressao();
-		
 
 	}
 
 	/*
 	 * Realiza operações de cálculo
+	 */
+	/**
+	 * 
+	 * @return
 	 */
 	private Object calcularExpressao() {
 		ScriptEngineManager factory = new ScriptEngineManager();
@@ -464,6 +482,9 @@ public class Calculadora extends JFrame {
 		return obj;
 	}
 
+	/**
+     * 
+     */
 	private void fecharParenteses() {
 		int contAbre = 0;
 		int contFecha = 0;
@@ -484,12 +505,19 @@ public class Calculadora extends JFrame {
 	/*
 	 * Limpa a tela
 	 */
+	/**
+	 * 
+	 */
 	private void limparExpressao() {
 		sbCaracteres.delete(0, sbCaracteres.length());
 	}
 
 	/*
 	 * Adiciona caracter no Stringbuffer
+	 */
+	/**
+	 * 
+	 * @param ACaracter
 	 */
 	private void adicionarNaLista(char ACaracter) {
 		if (sbCaracteres.length() < 13)

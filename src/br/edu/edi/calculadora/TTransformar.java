@@ -11,7 +11,11 @@ import java.util.Stack;
  * 
  */
 public class TTransformar {
-
+/**
+ * 
+ * @param ACaracter
+ * @return
+ */
 	private int getPrioridade(char ACaracter) {
 		if (ACaracter == '(')
 			return 1;
@@ -22,7 +26,11 @@ public class TTransformar {
 		else
 			return 0;
 	}
-
+/**
+ * 
+ * @param AExpInfixa
+ * @return
+ */
 	public String ConverterPosFixa(String AExpInfixa) {
 		String sExpPosFixa = "";
 		Stack<Character> oPilha = new Stack<Character>();
@@ -61,7 +69,11 @@ public class TTransformar {
 
 		return sExpPosFixa;
 	}
-
+/**
+ * 
+ * @param ACaracter
+ * @return
+ */
 	public boolean IsOperador(char ACaracter) {
 		char[] Operadores = { '/', '*', '+', '-' };
 		for (char cCaracter : Operadores) {
@@ -70,7 +82,11 @@ public class TTransformar {
 		}
 		return false;
 	}
-
+/**
+ * 
+ * @param ACaracter
+ * @return
+ */
 	public boolean IsOperando(char ACaracter) {
 		return Character.isDigit(ACaracter);
 	}
