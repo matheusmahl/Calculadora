@@ -274,8 +274,7 @@ public class Calculadora extends JFrame {
 					DecimalFormat df = new DecimalFormat("###0.00########");
 					Object resultado = calcularExpressao();
 					String op = df.format(resultado);
-					lblPosFixa.setText(Conversor.ConverterPosFixa(sbCaracteres
-							.toString()));
+					lblPosFixa.setText(Conversor.ConverterPosFixa(sbCaracteres.toString()));
 					lblInfixa02.setText(sbCaracteres.toString());
 					limparExpressao();
 					sbCaracteres.append(op);
